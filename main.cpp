@@ -6,15 +6,15 @@
 
 int main(int argc,char *argv[]){
 using namespace std;
-string filename="dna.txt";
+string filename=("dna.txt");
 Sequence obj(filename);
-int length=obj.length;
+int length=obj.length();
 int baseA=obj.numberOf("A");
-int baseB=obj.numberOf("B");
+//int baseB=obj.numberOf("B");
 string longest=obj.longestConsecutive();
 cout<<length<<endl;
 cout<<baseA<<endl;
-cout<<baseB<<endl;
+//cout<<baseB<<endl;
 cout<<longest<<endl;
 
 return 0;
