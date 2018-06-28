@@ -10,11 +10,13 @@ string filename=("dna.txt");
 Sequence obj(filename);
 int length=obj.length();
 int baseA=obj.numberOf("A");
-//int baseB=obj.numberOf("B");
+int baseT=obj.numberOf("T");
+int baseC=obj.numberOf("C");
+int baseG=obj.numberOf("G");
 string longest=obj.longestConsecutive();
 cout<<length<<endl;
 cout<<baseA<<endl;
-//cout<<baseB<<endl;
+cout<<baseT<<endl<<baseC<<endl<<baseG<<endl;
 cout<<longest<<endl;
 
 return 0;

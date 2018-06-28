@@ -38,9 +38,13 @@ int Sequence::length(){
 int Sequence::numberOf(char* base){
 	string goal(base);
 	int num=0;
-	for(int i=0;i<200;i++){
-	i=data.find(goal,i+1);
+//	cout<<base<<" "<<goal<<endl;
+	for(int i=0;i<dataLength;i++){
+		if(data[i]==goal[0]){
+			 num++;
+		}
 	}
+	//cout<<num<<endl;
 	return num;
 }
 
@@ -48,29 +52,29 @@ string Sequence::longestConsecutive(){
 	clock_t start_time=clock();
 	string longest1,longest2;
 	string null;
-	int count1=1;
-	int count2=1;
+	int count1=0;
+	int count2=0;
 	for(int i=0;i<dataLength;i++)
 	{
 		if(data[i]==data[i+1])
 		{
-			count2+=count1;
-			string add(count1,data[i]);
+			count2++;
 			longest2=longest2+data[i];
 		}
 		else 
 		{
-			longest2=data[i];
+			longest2+=data[i];
 			if(count2>count1){
 			count1=count2;
 			longest1=longest2;
 			}
 			longest2=null;
-			count2=1;
+			count2=0;
 		}
 	}
 clock_t end_time=clock();
 	cout<<"time: "<<static_cast<double>(end_time-start_time)/CLOCKS_PER_SEC*1000<<"ms"<<endl;
+	cout<<count1<<endl;
 return longest1;
 }
 
