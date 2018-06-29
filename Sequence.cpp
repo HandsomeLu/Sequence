@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<iostream>
 #include<fstream>
-#include<string>
+#include<string.h>
 #include<cmath>
 #include<algorithm>
 #include "Sequence.h"
@@ -35,8 +35,9 @@ int Sequence::length(){
 	return dataLength;
 }
 
-int Sequence::numberOf(char* base){
-	string goal(base);
+int Sequence::numberOf(char base){
+	char* a=&base;
+	string goal(a);
 	int num=0;
 //	cout<<base<<" "<<goal<<endl;
 	for(int i=0;i<dataLength;i++){
@@ -78,38 +79,47 @@ clock_t end_time=clock();
 return longest1;
 }
 
-/*string Sequence::longestRepeated(){
-
-	char c[500000], *a[500000];
-
-	int n=0;
-	int i,temp;
-	int maxlen=0,maxi=0;
-	for(i=0;i<dataLength;i++){
-	c[i]=data[i];
-	a[i]=&c[i];
+string Sequence::longestRepeated(){
+	cout<<"1"<<endl;
+	char* a=new char[12000000];
+	cout<<"2"<<endl;
+	char* ab=new char[12000000];
+	int i=0;
+	a=(char*)data.c_str();
+	for(i=0;i<1000;i++){
+		ab[i]=*(&a[i]);
 	}
-	c[i]='\0';
-	i=0;
-	qsort(a,n,sizeof(char*),pstrcmp);
-	for(i=0;i<n-1;++i){
-		temp=comlen(a[i],a[i+1]);
+	int n=0;
+	int temp;
+	int maxlen=0;
+	int maxi=0;
+	cout<<ab<<endl;
+//	cout<<c<<endl;
+	qsort(ab,i,sizeof(char*),pstrcmp);
+	//for(int i=0;i<n-1;i++) cout<<a[i]<<endl;
+	for(int n=0;n<i-1;n++){
+		temp=comlen(ab+n,ab+(n+1));
+		//cout<<ab[n]<<" ";
 		if(temp>maxlen){
 			maxlen=temp;
-			maxi=i;
+			maxi=n;
+		//	cout<<maxlen<<endl<<a[maxi]<<endl;
 			}
-		}	
- return a[maxi];
-
+		}
+	cout<<"4"<<endl;	
+	string repeated=ab+maxi;
+//	cout<<a[maxi]<<endl;
+	return repeated.substr(0,maxlen);
+	delete []a;
 }
-
-int comlen(char* p,char* q){
+int Sequence::comlen(char* p,char* q){
 	int i=0;
-	while(p&&(p++==q++))i++;
+	while(*p&&(*p++==*q++))i++;
+//	cout<<i<<endl;
 	return i;
 }
 
-int pstrcmp(const void *p1,const void *p2){
+int Sequence::pstrcmp(const void *p1,const void *p2){
 return strcmp(*(char*const *)p1,*(char* const*)p2);
 }
-*/
+

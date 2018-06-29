@@ -12,16 +12,16 @@ class Sequence{
 public:
 	Sequence(string);
 	int length();
-	int numberOf(char*);
+	int numberOf(char);
 	string longestConsecutive();
 	string longestRepeated();
-	friend int comlen(char*,char*);
-	friend int pstrcmp(const void *,const void *);
+	int comlen(char*,char*);
+	static int pstrcmp(const void *,const void *);
 
 private:
 	string filename;
 	string data;
-	int dataLength=0;
+	int dataLength;
 	int baseA, baseT, baseC, baseG;
 };
 
