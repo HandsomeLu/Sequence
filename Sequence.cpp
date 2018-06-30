@@ -74,31 +74,29 @@ string Sequence::longestConsecutive(){
 		}
 	}
 clock_t end_time=clock();
-	cout<<"time: "<<static_cast<double>(end_time-start_time)/CLOCKS_PER_SEC*1000<<"ms"<<endl;
-	cout<<count1<<endl;
+//	cout<<"time: "<<static_cast<double>(end_time-start_time)/CLOCKS_PER_SEC*1000<<"ms"<<endl;
+//	cout<<count1<<endl;
 return longest1;
 }
 
 string Sequence::longestRepeated(){
-	cout<<"1"<<endl;
 	char* a=new char[12000000];
-	cout<<"2"<<endl;
-	char* ab=new char[12000000];
+//	cout<<"2"<<endl;
+	char** ab=new char*[12000000];
 	int i=0;
 	a=(char*)data.c_str();
-	for(i=0;i<1000;i++){
-		ab[i]=*(&a[i]);
+	for(i=0;i<dataLength;i++){
+		ab[i]=&a[i];
 	}
 	int n=0;
 	int temp;
 	int maxlen=0;
 	int maxi=0;
-	cout<<ab<<endl;
 //	cout<<c<<endl;
 	qsort(ab,i,sizeof(char*),pstrcmp);
-	//for(int i=0;i<n-1;i++) cout<<a[i]<<endl;
+//	for(int i=0;i<n-1;i++) cout<<ab[i]<<endl;
 	for(int n=0;n<i-1;n++){
-		temp=comlen(ab+n,ab+(n+1));
+		temp=comlen(ab[n],ab[n+1]);
 		//cout<<ab[n]<<" ";
 		if(temp>maxlen){
 			maxlen=temp;
@@ -106,11 +104,12 @@ string Sequence::longestRepeated(){
 		//	cout<<maxlen<<endl<<a[maxi]<<endl;
 			}
 		}
-	cout<<"4"<<endl;	
-	string repeated=ab+maxi;
+//	cout<<"4"<<endl;	
+	string repeated=ab[maxi];
 //	cout<<a[maxi]<<endl;
 	return repeated.substr(0,maxlen);
 	delete []a;
+	delete []ab;
 }
 int Sequence::comlen(char* p,char* q){
 	int i=0;
