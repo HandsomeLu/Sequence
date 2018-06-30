@@ -80,9 +80,10 @@ return longest1;
 }
 
 string Sequence::longestRepeated(){
-	char* a=new char[12000000];
+	clock_t start_time=clock();
+	char* a=new char[dataLength];
 //	cout<<"2"<<endl;
-	char** ab=new char*[12000000];
+	char** ab=new char*[dataLength];
 	int i=0;
 	a=(char*)data.c_str();
 	for(i=0;i<dataLength;i++){
@@ -106,8 +107,10 @@ string Sequence::longestRepeated(){
 		}
 //	cout<<"4"<<endl;	
 	string repeated=ab[maxi];
-//	cout<<a[maxi]<<endl;
+	clock_t end_time=clock();
+//	cout<<"time:"<<static_cast<double>(end_time-start_time)/CLOCKS_PER_SEC*100<<"ms"<<endl;
 	return repeated.substr(0,maxlen);
+//	cout<<a[maxi]<<endl;
 	delete []a;
 	delete []ab;
 }
